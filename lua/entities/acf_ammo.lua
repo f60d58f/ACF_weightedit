@@ -414,17 +414,7 @@ function ENT:CreateAmmo(Id, Data1, Data2, Data3, Data4, Data5, Data6, Data7, Dat
 end
 
 function ENT:UpdateMass()
-	self.Mass = self.EmptyMass + self.AmmoMassMax*(self.Ammo/math.max(self.Capacity,1))
-	
-	--reduce superflous engine calls, update crate mass every 5 kgs change or every 10s-15s
-	if math.abs(self.LastMass - self.Mass) > 5 or CurTime() > self.NextMassUpdate then
-		self.LastMass = self.Mass
-		self.NextMassUpdate = CurTime()+math.Rand(10,15)
-		local phys = self:GetPhysicsObject()  	
-		if (phys:IsValid()) then 
-			phys:SetMass( self.Mass ) 
-		end
-	end
+	self.Mass = self.Mass
 	
 end
 
